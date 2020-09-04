@@ -1,5 +1,12 @@
 /* 清除默认样式 */
 
+h1,
+p,
+h2,
+h3,
+h4,
+h5,
+h6,
 body,
 ul,
 li {
@@ -8,8 +15,14 @@ li {
 }
 
 body {
-    background-color: black;
-    color: white;
+    background-color: #efefef;
+    color: black;
+}
+
+hr {
+    height: 0;
+    border: none;
+    border-top: 1px solid #d6d6d6;
 }
 
 a {
@@ -87,4 +100,111 @@ a {
 
 .topNavBar-inner {
     padding: 0 16px;
+}
+
+.banner {
+    background-image: url(../img/rs-cover.jpg);
+    background-position: center;
+    background-size: cover;
+    border: 1px solid red;
+    height: 515px;
+}
+
+.banner .mask {
+    height: 515px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.userCard {
+    border: 1px solid yellow;
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+}
+
+.userCard .text .welcome {
+    background-color: #df5059;
+    color: #fff;
+    padding: 4px 16px;
+    line-height: 22px;
+    position: relative;
+}
+
+.welcome .triangle {
+    border: 10px solid transparent;
+    width: 0px;
+    height: 0px;
+    border-left-color: #df5059;
+    /* border-left-color: black; */
+    border-top-width: 0px;
+    display: block;
+    position: absolute;
+    left: 4px;
+    top: 100%;
+}
+
+.userCard h1 {
+    margin-top: 18px;
+}
+
+.userCard .text {
+    float: left;
+    width: 470px;
+}
+
+.userCard .text hr {
+    margin: 20px 0;
+}
+
+.userCard .picture {
+    float: left;
+    margin-right: 65px;
+}
+
+.userCard .textAndPicture {
+    padding: 50px;
+}
+
+.userCard dl dt,
+.userCard dl dd {
+    float: left;
+}
+
+.userCard dl dt {
+    width: 30%;
+    color: #333;
+    font-weight: bold;
+}
+
+.userCard dl dd {
+    width: 50%;
+    color: #9da0a7;
+}
+
+.userCard>footer.media {
+    background-color: #df5059;
+    text-align: center;
+}
+
+.userCard svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+    vertical-align: top;
+}
+
+.userCard>footer.media>a {
+    /* border: 1px solid #000; */
+    display: inline-block;
+    border-radius: 50%;
+    width: 40px;
+    line-height: 30px;
+    /* height: 40px; */
+    padding: 5px 0;
+    margin: 16px;
+}
+
+.userCard>footer.media>a:hover {
+    background-color: #c2464d;
 }

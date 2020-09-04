@@ -7,6 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入CSS -->
     <link rel="stylesheet" href="css/index.css">
+    <!-- 加入媒体图标 -->
+    <script src="//at.alicdn.com/t/font_2046759_ezyvtth0q2.js"></script>
+    <style type="text/css">
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,44 +45,59 @@
 
 
 
-    <div class="banner" style="background-image: url(img/rs-cover.jpg);border: 1px solid red;height: 515px;"></div>
+    <div class="banner">
+        <div class="mask"></div>
+    </div>
     <!-- 主要内容 -->
     <!-- 类命名的规范：标签是什么，不是长什么样子 -->
     <main>
-        <div class="card">
-            <div class="picture">
-                <img src="#" alt="头像">
-            </div>
-            <div class="text">
-                <div class="profile">
-                    <span class="welcome">Hello</span>
+        <div class="userCard">
+            <div class="textAndPicture clearfix">
+                <div class="picture">
+                    <img src="img/avatar.jpg" height="347" width="299" alt="头像">
+                </div>
+                <div class="text">
+                    <span class="welcome">Hello
+                        <span class="triangle"></span>
+                    </span>
                     <h1>唐广园</h1>
                     <p>前端开发工程师</p>
                     <hr>
-                    <!-- description list -->
-                    <dl>
-                        <!-- description term -->
+                    <dl class="clearfix">
                         <dt>年龄</dt>
-                        <!-- description difenition -->
                         <dd>20</dd>
                         <dt>所在城市</dt>
                         <dd>上海</dd>
                         <dt>邮箱</dt>
                         <dd>254202042@qq.com</dd>
-                        <dd>手机</dd>
-                        <dt>18970942881</dt>
+                        <dt>手机</dt>
+                        <dd>18970942881</dd>
                     </dl>
                 </div>
-            </div>
 
+            </div>
             <footer class="media">
-                <a href="#"><img src="#" alt=".."></a>
-                <a href="#"><img src="#" alt=".."></a>
-                <a href="#"><img src="#" alt=".."></a>
-                <a href="#"><img src="#" alt=".."></a>
-                <a href="#"><img src="#" alt=".."></a>
-                <a href="#"><img src="#" alt=".."></a>
-                <a href="#"><img src="#" alt=".."></a>
+                <a href="#">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-jirengulogojichu1"></use>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                </a>
+                <a href="#">
+
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-twitter"></use>
+                    </svg>
+                </a>
             </footer>
         </div>
 
