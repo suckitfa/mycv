@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1">
+        <colgroup>
+            <col width=100>
+            <col bgcolor=red width=200>
+            <col width=100>
+            <col width=70>
+        </colgroup>
+
+        <tbody>
+            <tr>
+                <th></th>
+                <td>小明</td>
+                <td>1</td>
+                <td>94</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>小白</td>
+                <td>2</td>
+                <td>99</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>小红</td>
+                <td>2</td>
+                <td>97</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>平均分</th>
+                <td></td>
+                <td></td>
+                <td>96.6</td>
+            </tr>
+            <tr>
+                <th>总分</th>
+                <td></td>
+                <td></td>
+                <td>290</td>
+            </tr>
+        </tfoot>
+        <thead>
+            <tr>
+                <th>项目</th>
+                <th>姓名</th>
+                <th>班级</th>
+                <th>分数</th>
+            </tr>
+        </thead>
+    </table>
+    <a href="./test.html">Test</a>
+    <form action="test.html" method="get">
+        <label for="uname">用户名</label><input id="uname" type="text" name="username">
+        <label for="pwd">密码</label><input id="pwd" type="password" name="pwd">
+        <label>年龄<input type="text"></label>
+        <button type="submit">提交</button> 喜欢的水果？
+        <label><input type="checkbox" name="fruit" value="orange">橘子
+        </label>
+        <label><input type="checkbox" name="fruit" value="banna">香蕉
+        </label> 爱我吗？
+        <label><input type="radio" name="loveme" value="yes">YES</label>
+        <label><input type="radio" name="loveme" value="no">NO</label>
+        <select name="分组" id="" multiple>
+            <option value="1" selected>第一组</option>
+            <option value="2">第二组</option>
+            <option value="3">第三组</option>
+            <option value="4" disabled>第四组</option>
+        </select>
+        <hr>
+        <textarea name="preference" id="" cols="30" rows="10" style="resize: none;width:200px;height: 100px;"></textarea>
+    </form>
+</body>
+
+</html>
