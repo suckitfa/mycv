@@ -40,5 +40,51 @@ offsetTop
 window.scrollTo(x-coord,y-coord)
 coord：坐标的意思
 
-offsetTop offsetLeft 属性详解：相对于上层元素
-offsetParent 最近的具有定位的父级元素
+offsetTop offsetLeft 属性详解：相对于上层元素 这个属性是不会变的
+offsetParent 最近的具有定位最近的具有
+定位的父级元素
+
+var timeid = setInterval(()=>{
+    if(n >= 200){
+        window.clearInterval(timeid);
+    }
+})
+
+
+
+动画的效果优化： tweenjs
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.0/tween.umd.js"></script>
+  <script>
+      function animate(time) {
+	requestAnimationFrame(animate);
+	TWEEN.update(time);
+}
+requestAnimationFrame(animate);
+var coords = {x: 0, y: 0};
+var tween = new TWEEN.Tween(coords)
+	.to({x: 300, y: 200}, 1000)
+	.easing(TWEEN.Easing.Quadratic.Out)
+	.onUpdate(function(){
+      console.log(coords.x,coords.y);
+	})
+	.start();
+  </script>
+</body>
+</html> -->
+学会如何在不懂的时候解决问，这个是关键
+就是学会如何用基础知识学会如何去拷贝别人的代码
+
+
+标签的标记！
+<div data-x></div>
+document.querySelectorAll('div[data-x]');
+
+
+##### 不同的动作定义不同的类来定义，这样在js出发的时候不会产生冲突

@@ -91,7 +91,7 @@
     <!-- 主要内容 -->
     <!-- 类命名的规范：标签是什么，不是长什么样子 -->
     <main>
-        <div class="userCard" id="siteAbout">
+        <div class="userCard" id="siteAbout" data-x>
             <div class="textAndPicture clearfix">
                 <div class="picture">
                     <img src="img/avatar.jpg" height="347" width="299" alt="头像">
@@ -152,7 +152,7 @@
             唐广园，初级前端工程师，2022应届毕业生。<br> 技能：前端开发，java开发，Node开发
         </p>
     </main>
-    <section class="skills" id="siteSkills">
+    <section class="skills" id="siteSkills" data-x>
         <h2>技能</h2>
         <ol class="skill-items clearfix">
             <li>
@@ -195,7 +195,7 @@
     </section>
 
 
-    <section class="portfolio" id="siteWorks">
+    <section class="portfolio" id="siteWorks" data-x>
         <h2>作品集</h2>
         <nav>
             <ol>
@@ -231,20 +231,45 @@
         </div>
 
     </section>
-
+    <!-- 引入动画效果优化的库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.0/tween.umd.js"></script>
     <!-- 运行到这里说明之前的标签已经 出现在页面上了 移除加载动画效果 -->
     <script>
-        setTimeout(() => {
-            document.getElementById("site-welcome").classList.remove('active');
-            console.log("Hello animation end!");
-        }, 3000);
+        //添加offset类
+        let speicalTags = document.querySelectorAll('[data-x]');
+        for (let i = 0; i < speicalTags.length; i++) {
+            speicalTags[i].classList.add('offset');
+        }
 
+        highlight();
         // 监听窗口滚动事件,实现sticky bar的效果
         window.onscroll = function(event) {
             // 使用三元操作优化
             let classOp = window.scrollY > 0 ? "add" : "remove";
             document.getElementById("topNavBar").classList[classOp]('sticky');
+            highlight();
         };
+
+        //将区块恢复原来的位置，给对应的导航项目添加高亮
+        function highlight() {
+            let speicalTags = document.querySelectorAll('[data-x]');
+            //minIndex.窗口最近的
+            let minIndex = 0;
+            for (let i = 1; i < speicalTags.length; i++) { // 这个算法很简单，但是很有效 //核心是找出“区块” 距离最近一个，我们认为用户正砸i浏览给区块 if
+                if (Math.abs(speicalTags[i].offsetTop - window.scrollY) < Math.abs(speicalTags[minIndex].offsetTop - window.scrollY)) {
+                    minIndex = i;
+                }
+            }
+            speicalTags[minIndex].classList.remove('offset');
+            let id = speicalTags[minIndex].id; //querySelector() 返回一个元素 // querySelectorAll()返回一个数组 let
+            a = document.querySelector('[href="#' + id + '" ]');
+            let li = a.parentNode;
+            let brothersAndMe = li.parentNode.children;
+            for (let i = 0; i < brothersAndMe.length; i++) {
+                brothersAndMe[i].classList.remove('highlight');
+            }
+            li.classList.add('highlight');
+        }
         //鼠标进入，显示子菜单
         let liTags = document.querySelectorAll('nav.menu > ul >li');
         for (let i = 0; i < liTags.length; i++) {
@@ -258,7 +283,7 @@
             }
         }
 
-        //定位分区
+        //定位分区，动画效果
         let aTags = document.querySelectorAll('nav.menu>ul>li>a');
         for (let i = 0; i < aTags.length; i++) {
             aTags[i].onclick = function(event) {
@@ -267,13 +292,30 @@
                 let a = event.currentTarget;
                 let href = a.getAttribute('href');
                 let element = document.querySelector(href);
-                let top = element.offsetTop;
-                console.log(top);
                 window.scrollTo({
                     left: 0,
-                    top: top - 80,
+                    top: element.offsetTop - 80,
                     behavior: 'smooth'
                 });
+
+
+                //接下来是硬核动画效果
+                //理论依据：当一个图形一秒内移动超过25次时
+                //人的眼睛认为这个图形是连续移动的，形成动画（大脑自动脑补）
+                // let n = 25;
+                // let duration = 500 / n;
+                // let currentTop = window.scrollY;
+                // let targetTop = top - 80;
+                // let distance = (targetTop - currentTop) / n; //每次移动的距离
+                // let i = 0;
+                // var timeid = setInterval(() => {
+                //     if (i === n) {
+                //         window.clearInterval(timeid);
+                //         return;
+                //     }
+                //     i = i + 1;
+                //     window.scrollTo(0, currentTop + distance * i);
+                // }, 1000 / n);
             }
         }
     </script>
