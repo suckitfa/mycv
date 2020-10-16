@@ -54,6 +54,7 @@ a {
 .topNavBar nav>ul>li {
     float: left;
     margin-left: 17px;
+    position: relative;
 }
 
 
@@ -67,18 +68,39 @@ a {
 
 .topNavBar nav>ul>li>a {
     font-size: 12px;
-    color: #b7b7b7;
     font-weight: bold;
     padding-top: 5px;
     padding-bottom: 5px;
     display: block;
+    color: inherit;
     /* 透明边框，占位，防止抖动 */
     border-bottom: 3px solid transparent;
     border-top: 3px solid transparent;
+    position: relative;
 }
 
-.topNavBar nav>ul>li>a:hover {
-    border-bottom: 3px solid #e06567;
+.topNavBar nav>ul>li.active>a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: red;
+    height: 3px;
+    transition: 0.3s;
+    animation: menueSlide 1s;
+}
+
+@keyframes menueSlide {
+    0% {
+        /* transform: translateX(-100%); */
+        width: 0;
+    }
+    100% {
+        /* transform: translateX(0); */
+        width: 100%;
+    }
 }
 
 .topNavBar a {
@@ -87,7 +109,7 @@ a {
 
 .topNavBar nav {
     float: right;
-    padding-top: 7px;
+    padding-top: 5px;
 }
 
 .topNavBar .logo {
@@ -95,6 +117,39 @@ a {
     padding-bottom: 4px;
     font-size: 24px;
     font-family: "Arial Black";
+}
+
+@keyframes submenuSlide {
+    0% {
+        /* transform: translateX(-20%); */
+        margin-right: 100%;
+    }
+    100% {
+        margin-right: 0;
+    }
+}
+
+.topNavBar .submenu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    color: #b7b7b7;
+    transition: 0.3s;
+    animation: submenuSlide 1s;
+    cursor: pointer;
+}
+
+.topNavBar li.active>.submenu {
+    display: block;
+}
+
+.topNavBar .submenu>li {
+    /* 别让文字换行 */
+    /* 防止相对定位元素缩成一团 */
+    white-space: nowrap;
+    padding: 5px 10px;
 }
 
 .logo .rs {
@@ -109,10 +164,20 @@ a {
     padding-bottom: 20px;
     /* padding-left: 16px; */
     /* padding-right: 16px; */
+    color: #b7b7b7;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    transition: all 0.5s;
+}
+
+.topNavBar.sticky {
+    background-color: white;
+    padding: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    color: #3d4451;
+    z-index: 1;
 }
 
 .topNavBar-inner {

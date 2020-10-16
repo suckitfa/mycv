@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入CSS -->
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/loading.css">
     <!-- 加入媒体图标 -->
     <script src="https://at.alicdn.com/t/font_2046759_ezyvtth0q2.js"></script>
     <style type="text/css">
@@ -17,21 +18,60 @@
             fill: currentColor;
             overflow: hidden;
         }
+        /* 加载动画可以优化用户体验 */
+        
+        .site-welcome {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: antiquewhite;
+            z-index: 1;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .site-welcome .active {
+            display: flex;
+        }
     </style>
 </head>
 
 <body>
-    <div class="topNavBar">
+    <div class="site-welcome active" id="site-welcome">
+        <div class="loading"></div>
+    </div>
+    <div class="topNavBar" id="topNavBar">
         <div class="topNavBar-inner clearfix">
             <a class="logo" href="#" alt="logo">
                 <span class="rs">RS</span><span class="card">card</span>
             </a>
-            <nav>
+            <nav class="menu">
                 <ul class="clearfix">
-                    <li><a href="#">关于</a></li>
-                    <li><a href="#">技能</a></li>
-                    <li><a href="#">作品</a></li>
-                    <li><a href="#">博客</a></li>
+                    <li><a href="#siteAbout">关于</a></li>
+                    <li><a href="#siteSkills">技能</a></li>
+                    <li>
+                        <a href="#siteWorks">作品</a>
+                        <ul class="submenu">
+                            <li>作品1</li>
+                            <li>作品2</li>
+                            <li>作品3</li>
+                            <li>作品4</li>
+                            <li>作品5</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">博客</a>
+                        <ul class="submenu">
+                            <li>博客1</li>
+                            <li>博客2</li>
+                            <li>博客3</li>
+                            <li>博客4</li>
+                            <li>博客5</li>
+                        </ul>
+                    </li>
                     <li><a href="#">联系方式</a></li>
                     <li><a href="#">日历</a></li>
                     <li><a href="#">其他</a></li>
@@ -51,7 +91,7 @@
     <!-- 主要内容 -->
     <!-- 类命名的规范：标签是什么，不是长什么样子 -->
     <main>
-        <div class="userCard">
+        <div class="userCard" id="siteAbout">
             <div class="textAndPicture clearfix">
                 <div class="picture">
                     <img src="img/avatar.jpg" height="347" width="299" alt="头像">
@@ -112,7 +152,7 @@
             唐广园，初级前端工程师，2022应届毕业生。<br> 技能：前端开发，java开发，Node开发
         </p>
     </main>
-    <section class="skills">
+    <section class="skills" id="siteSkills">
         <h2>技能</h2>
         <ol class="skill-items clearfix">
             <li>
@@ -155,7 +195,7 @@
     </section>
 
 
-    <section class="portfolio">
+    <section class="portfolio" id="siteWorks">
         <h2>作品集</h2>
         <nav>
             <ol>
@@ -191,6 +231,52 @@
         </div>
 
     </section>
+
+    <!-- 运行到这里说明之前的标签已经 出现在页面上了 移除加载动画效果 -->
+    <script>
+        setTimeout(() => {
+            document.getElementById("site-welcome").classList.remove('active');
+            console.log("Hello animation end!");
+        }, 3000);
+
+        // 监听窗口滚动事件,实现sticky bar的效果
+        window.onscroll = function(event) {
+            // 使用三元操作优化
+            let classOp = window.scrollY > 0 ? "add" : "remove";
+            document.getElementById("topNavBar").classList[classOp]('sticky');
+        };
+        //鼠标进入，显示子菜单
+        let liTags = document.querySelectorAll('nav.menu > ul >li');
+        for (let i = 0; i < liTags.length; i++) {
+            liTags[i].onmouseenter = function(event) {
+                //获取当前监听元素
+                event.currentTarget.classList.add("active");
+            }
+
+            liTags[i].onmouseleave = function(event) {
+                event.currentTarget.classList.remove('active');
+            }
+        }
+
+        //定位分区
+        let aTags = document.querySelectorAll('nav.menu>ul>li>a');
+        for (let i = 0; i < aTags.length; i++) {
+            aTags[i].onclick = function(event) {
+                //阻止默认动作
+                event.preventDefault();
+                let a = event.currentTarget;
+                let href = a.getAttribute('href');
+                let element = document.querySelector(href);
+                let top = element.offsetTop;
+                console.log(top);
+                window.scrollTo({
+                    left: 0,
+                    top: top - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    </script>
 </body>
 
 </html>
